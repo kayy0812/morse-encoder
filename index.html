@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/repsonsive.css">
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+    <title>Morse Decoder</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="wrapper__encoder">
+            <!-- <div class="wrapper__controls">
+                
+            </div> -->
+            <textarea class="wrapper__textarea" id="text-encode" rows="10"></textarea>
+        </div>
+        <div class="wrapper__decoder">
+            <div class="wrapper__controls">
+                <button onclick="copyText('text-decode')" title="Copy" class="btn">
+                    <i class="btn__icon ti-layers"></i>
+                    <!-- <span class="btn__label">Copy</span> -->
+                </button>
+                <button title="Play" class="btn btn--disabled">
+                    <i class="btn__icon ti-control-play"></i>
+                    <!-- <span class="btn__label">Play</span> -->
+                </button>
+            </div>
+            <textarea readonly class="wrapper__textarea" id="text-decode" rows="10"></textarea>
+        </div>
+    </div>
+    <script>
+        var text_encode = document.getElementById('text-encode');
+        var text_decode = document.getElementById('text-decode');
+
+        text_encode.onkeyup = function() {
+            var te = text_encode.value;
+
+            text_decode.value = convertToMorse(te).trim();
+        }
+
+        function convertToMorse (text) {
+            text = text.replace(/ /g,   '/'    );
+            text = text.replace(/a|A/g, '.- '  );
+            text = text.replace(/b|B/g, '-... ');
+            text = text.replace(/c|C/g, '-.-. ');
+            text = text.replace(/d|D/g, '-.. ' );
+            text = text.replace(/e|E/g, '. '   );
+            text = text.replace(/f|F/g, '..-. ');
+            text = text.replace(/g|G/g, '--. ' );
+            text = text.replace(/h|H/g, '.... ');
+            text = text.replace(/i|I/g, '.. '  );
+            text = text.replace(/j|J/g, '.--- ');
+            text = text.replace(/k|K/g, '-.- ' );
+            text = text.replace(/l|L/g, '.-.. ');
+            text = text.replace(/m|M/g, '-- '  );
+            text = text.replace(/n|N/g, '-. '  );
+            text = text.replace(/o|O/g, '--- ' );
+            text = text.replace(/p|P/g, '.--. ');
+            text = text.replace(/q|Q/g, '--.- ');
+            text = text.replace(/r|R/g, '.-. ' );
+            text = text.replace(/s|S/g, '... ' );
+            text = text.replace(/t|T/g, '- '   );
+            text = text.replace(/u|U/g, '..- ' );
+            text = text.replace(/v|V/g, '...- ');
+            text = text.replace(/w|W/g, '.-- ' );
+            text = text.replace(/x|X/g, '-..- ');
+            text = text.replace(/y|Y/g, '-.-- ');
+            text = text.replace(/z|Z/g, '--.. ');
+            return text;
+        }
+
+        function convertToString (text) {
+            return text;
+        }
+
+        function copyText (id) {
+            var text = document.getElementById(id);
+            text.select();
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+</html>
